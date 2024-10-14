@@ -1,6 +1,7 @@
 import network 
 import time
 import wifi_config
+from Pico_pins import PicoPins
 
 STATUS_CODES = {
     0: 'WLAN is not enabled.', 
@@ -13,6 +14,7 @@ STATUS_CODES = {
 class WIFI_CONNECTION(): 
     def __init__(self):
         self.wlan = network.WLAN(network.STA_IF)
+        self.pins = PicoPins()
         self.available_networks =[]
         self.wlan.active(True)
 
@@ -40,6 +42,8 @@ class WIFI_CONNECTION():
 
         while CONNECTION_TIMEOUT >0:
 
+            self.pins.blink()
+            
             status = self.wlan.status()
             config = self.wlan.ifconfig()
 

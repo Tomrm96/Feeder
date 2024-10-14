@@ -1,8 +1,9 @@
 from wifi import WIFI_CONNECTION
-from get_schedule import GetSchedule
+from bridge import Bridge
+
 
 wifi = WIFI_CONNECTION()
-get_schedule = GetSchedule()
+get_schedule = Bridge()
 
 
 # Connect to WIFI
