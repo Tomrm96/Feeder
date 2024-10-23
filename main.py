@@ -18,25 +18,26 @@ loop = 10
 
 # wifi.disconnect_wifi()
 
-while loop > 0:
+# while loop > 0:
 
-    print(loop)
+#     print(loop)
 
-    wifi.connect_to_wifi()
+#     wifi.connect_to_wifi()
 
-    time.sleep(10)
-
-    pico_pins.servo_test()
+#     time.sleep(10)
 
     
-    wifi.disconnect_wifi()
+#     wifi.disconnect_wifi()
 
-    loop -= 1
-
-
+#     loop -= 1
 
 
 
+pico_pins.servo_forward(3)
+
+time.sleep(1)
+
+pico_pins.servo_backward(3)
 
 # Check the Web app to look for updates to schedules
 
