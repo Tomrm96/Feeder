@@ -17,6 +17,7 @@ class WIFI_CONNECTION():
         self.pins = PicoPins()
         self.available_networks =[]
         self.wlan.active(True)
+        self.connect_to_wifi()
 
     def scan_for_wifi(self):
         self.available_SSIDS = self.wlan.scan()
