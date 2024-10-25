@@ -25,7 +25,7 @@ while loop > 0:
 
     pico_pins.servo_backward(1)
 
-    get_schedule.get_test()
+    get_schedule.get_test('test')
 
     wifi.disconnect_wifi()
 
