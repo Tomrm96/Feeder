@@ -8,37 +8,28 @@ wifi = WIFI_CONNECTION()
 get_schedule = Bridge()
 pico_pins = PicoPins()
 
-# Connect to WIFI
 
-# wifi.connect_to_wifi()
+loop = 1
 
+while loop > 0:
 
+    print(loop)
 
-loop = 10
+    wifi.connect_to_wifi()
 
-# wifi.disconnect_wifi()
+    time.sleep(3) 
 
-# while loop > 0:
+    pico_pins.servo_forward(1)
 
-#     print(loop)
+    time.sleep(1)
 
-#     wifi.connect_to_wifi()
+    pico_pins.servo_backward(1)
 
-#     time.sleep(10)
+    get_schedule.get_test()
 
-    
-#     wifi.disconnect_wifi()
+    wifi.disconnect_wifi()
 
-#     loop -= 1
-
-
-
-pico_pins.servo_forward(3)
-
-time.sleep(1)
-
-pico_pins.servo_backward(3)
-
+    loop -=1
 # Check the Web app to look for updates to schedules
 
 
