@@ -1,10 +1,9 @@
 import requests
 import wifi_config
 
-API_KEY = wifi_config.WEATHER_API_KEY
-location = 'Warrington'
+IP_ADDRESS = wifi_config.IP_ADDRESS
 
-url = f"https://api.weatherapi.com/v1/current.json?q={location}+&key={API_KEY}"
+url = f"http://{IP_ADDRESS}/api/test"
 
 class Bridge:
     def __init__(self):
@@ -20,7 +19,9 @@ class Bridge:
 
         response = requests.get(url)
         print('Response Code:', response.status_code)
-        weather = response.json()
+        data = response.json()
         response.close()
 
-        print(weather)
+        for item in data:
+            for key, value in item.items():
+                print(f"{key}: {value}")
