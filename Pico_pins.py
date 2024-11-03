@@ -3,15 +3,28 @@ import time
 
 class PicoPins:
     def __init__(self):
-        self.led = Pin(25, Pin.OUT)
+        self.led = Pin('LED', Pin.OUT)
         self.servo_pin = PWM(Pin(16))
         self.servo_pin.freq(50)
         self.backwards_value = 6553   
         self.forward_value = 3276   
         self.stop_value = 4915  
 
-    def blink(self):
-        self.led.toggle()
+    def blink(self, num):
+        for i in range(0,num):
+            self.led.value(True)
+            time.sleep(0.2)
+            self.led.value(False)
+            time.sleep(0.2)
+        self.led.value(False)
+
+    def error_blink(self, num):
+        for i in range(0,num):
+            self.led.value(True)
+            time.sleep(0.5)
+            self.led.value(False)
+            time.sleep(0.5)
+        self.led.value(False)
 
     def servo_forward(self, amount):
         for i in range(0, amount):
@@ -29,8 +42,5 @@ class PicoPins:
             time.sleep(1)
         self.servo_pin.deinit()
         
-    def dispense_food(self):
-        pass
-
     def weigh_food(self):
         pass

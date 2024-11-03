@@ -43,7 +43,7 @@ class WIFI_CONNECTION():
 
         while CONNECTION_TIMEOUT >0:
 
-            self.pins.blink()
+            self.pins.blink(1)
             
             status = self.wlan.status()
             config = self.wlan.ifconfig()
@@ -61,10 +61,14 @@ class WIFI_CONNECTION():
                 time.sleep(1)
 
         if status !=3:
+            self.pins.error_blink(2)
             raise RuntimeError('Failed to Make a Connection!')
+            
 
         else:
-            print(f"{STATUS_CODES[status]} Your IP Address is: {config[0]}")       
+            print(f"{STATUS_CODES[status]} Your IP Address is: {config[0]}")
+            self.pins.blink(5) 
+            time.sleep(2)      
         
     def disconnect_wifi(self):
         self.wlan.disconnect()

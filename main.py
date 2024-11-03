@@ -11,20 +11,33 @@ pico_pins = PicoPins()
 clock = Clock()
 dispenser = Dispense()
 
+# Error Blinks:
+
+# Two Blinks = Couldn't connect to WIFI
+# Three Blinks = 
+
+# Normal Blinks:
+# One Blink = Looking for WIFI
+# Five Blinks = Connected to WIFI
+# Four Blinks = Recieved JSON Payload
+# Ten Blinks = Dispensing food
+
 while True:
+    
+    time.sleep(5)
 
     get_schedule.get_schedule('GET')    
 
     next_feed = get_schedule.update_schedule() 
+    print()
 
-    if get_schedule.date_to_feed == clock.current_clock('day') and get_schedule.feed_time == clock.current_clock('time'):
+    if get_schedule.date_to_feed == clock.current_clock('date') and get_schedule.feed_time == clock.current_clock('time'):
         dispenser.dispense(get_schedule.feeding_amount)
-    else:
-        dispenser.dispense(get_schedule.feeding_amount)
+        time.sleep(70)
+
+    # wifi.disconnect_wifi()
 
     time.sleep(next_feed - 60) 
-
-    wifi.disconnect_wifi()
 
 # TODO Find if there is a row after the current row, if there is set the sleep time for the 
 # time until the next row minus 60 seconds for a buffer. If no row, set the sleep to 10 seconds so it checks for new feeds. 
